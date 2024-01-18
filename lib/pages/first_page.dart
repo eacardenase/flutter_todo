@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/profile_page.dart';
+import 'package:todo/pages/settings_page.dart';
+
+class FirstPage extends StatefulWidget {
+  FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int _selectedPageIndex = 0;
+
+  final List _pages = const [
+    HomePage(),
+    ProfilePage(),
+    SettingsPage(),
+  ];
+
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedPageIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,53 +34,29 @@ class FirstPage extends StatelessWidget {
           "First Page",
         ),
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.cyan.shade400,
-        child: Column(
-          children: [
-            const DrawerHeader(
-              child: Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 48,
-              ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-              title: const Text(
-                "HOME",
-                style: TextStyle(
-                  letterSpacing: 2,
-                  color: Colors.white,
-                ),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, "/homepage");
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              title: const Text(
-                "SETTINGS",
-                style: TextStyle(
-                  letterSpacing: 2,
-                  color: Colors.white,
-                ),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, "/settingspage");
-              },
-            ),
-          ],
-        ),
+      body: _pages[_selectedPageIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedPageIndex,
+        onTap: _navigateBottomBar,
+        items: const [
+          // home
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+
+          // profile
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
+
+          // settings
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
+        ],
       ),
     );
   }
