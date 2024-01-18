@@ -11,7 +11,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blue.shade300,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text(
+            "Flutter Lover",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          backgroundColor: Colors.cyan.shade300,
+          elevation: 0,
+          leading: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
         body: Center(
           child: Container(
             height: 300,
