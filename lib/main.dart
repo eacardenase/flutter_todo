@@ -14,11 +14,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: ListView.builder(
-          itemCount: names.length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(
-              names[index],
+        body: GridView.builder(
+          itemCount: 64,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+          ),
+          itemBuilder: (context, index) => Container(
+            color: Colors.cyan,
+            margin: const EdgeInsets.all(
+              2,
             ),
           ),
         ),
