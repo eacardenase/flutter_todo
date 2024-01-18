@@ -11,15 +11,52 @@ class FirstPage extends StatelessWidget {
           "First Page",
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate to second page
-            Navigator.pushNamed(context, "/secondpage");
-          },
-          child: const Text(
-            "Go to Second Page",
-          ),
+      drawer: Drawer(
+        backgroundColor: Colors.cyan.shade400,
+        child: Column(
+          children: [
+            const DrawerHeader(
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+                size: 48,
+              ),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "HOME",
+                style: TextStyle(
+                  letterSpacing: 2,
+                  color: Colors.white,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/homepage");
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "SETTINGS",
+                style: TextStyle(
+                  letterSpacing: 2,
+                  color: Colors.white,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/settingspage");
+              },
+            ),
+          ],
         ),
       ),
     );
